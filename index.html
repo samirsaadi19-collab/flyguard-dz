@@ -1,0 +1,392 @@
+<!--
+  ════════════════════════════════════════════════════════════════
+  SECTION LIQUID SHOPIFY — VENTIFLY Landing Page
+  Préfixe classes : vf- (évite tout conflit avec le thème)
+  Aucun <head>, aucun import de font, aucune init globale
+  Scroll natif non bloqué, mobile-first, responsive
+  ════════════════════════════════════════════════════════════════
+-->
+
+<section class="vf-wrap" id="vf-landing">
+<style>
+/* ── Scope toutes les variables à .vf-wrap pour éviter les fuites CSS ── */
+.vf-wrap{
+  --vf-bg:#fafaf8;
+  --vf-card:#ffffff;
+  --vf-dark:#1a1a1a;
+  --vf-text:#2a2a2a;
+  --vf-light:#6b6b6b;
+  --vf-border:#e8e4dc;
+  --vf-accent:#2f9e6e;
+  --vf-accent-dark:#247d56;
+  --vf-accent-soft:#e8f5ee;
+  --vf-gold:#c9962f;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  background:var(--vf-bg);
+  color:var(--vf-text);
+  width:100%;
+  overflow-x:hidden;
+}
+.vf-wrap *,.vf-wrap *::before,.vf-wrap *::after{box-sizing:border-box}
+.vf-wrap img{max-width:100%;display:block}
+.vf-container{max-width:680px;margin:0 auto;padding:0 20px}
+
+/* ── HERO ── */
+.vf-hero{background:linear-gradient(160deg,var(--vf-accent-soft) 0%,var(--vf-bg) 70%);padding:48px 20px 40px;text-align:center}
+.vf-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(47,158,110,.1);border:1px solid rgba(47,158,110,.25);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--vf-accent-dark);margin-bottom:20px}
+.vf-h1{font-size:clamp(26px,7vw,38px);font-weight:800;line-height:1.2;color:var(--vf-dark);margin-bottom:16px;letter-spacing:-.01em}
+.vf-hero-sub{font-size:16px;color:var(--vf-light);line-height:1.6;max-width:480px;margin:0 auto 28px}
+.vf-cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--vf-accent);color:#fff;border:none;border-radius:14px;padding:18px 32px;font-size:17px;font-weight:700;cursor:pointer;width:100%;max-width:380px;transition:background .2s,transform .15s;text-decoration:none;box-shadow:0 8px 24px rgba(47,158,110,.3)}
+.vf-cta-btn:active{transform:scale(.98);background:var(--vf-accent-dark)}
+.vf-cta-note{font-size:13px;color:var(--vf-light);margin-top:14px}
+.vf-hero-img{margin:32px auto 0;max-width:340px;aspect-ratio:1/1;background:var(--vf-card);border-radius:24px;border:1px solid var(--vf-border);display:flex;align-items:center;justify-content:center}
+
+/* ── STRIP BADGES ── */
+.vf-strip{background:var(--vf-dark);padding:14px 16px;display:flex;justify-content:center;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.vf-strip-inner{display:flex;gap:24px;white-space:nowrap}
+.vf-strip-item{font-size:12px;font-weight:600;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:6px;flex-shrink:0}
+
+/* ── SECTION GÉNÉRIQUE ── */
+.vf-section{padding:56px 20px}
+.vf-section-alt{background:var(--vf-card)}
+.vf-eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vf-accent);margin-bottom:12px;text-align:center}
+.vf-h2{font-size:clamp(22px,5.5vw,30px);font-weight:800;color:var(--vf-dark);line-height:1.25;text-align:center;margin-bottom:16px;letter-spacing:-.01em}
+.vf-section-sub{font-size:15px;color:var(--vf-light);text-align:center;line-height:1.7;max-width:480px;margin:0 auto 32px}
+
+/* ── PROBLEME ── */
+.vf-problem-list{display:flex;flex-direction:column;gap:14px;max-width:480px;margin:0 auto}
+.vf-problem-item{display:flex;align-items:flex-start;gap:12px;background:var(--vf-card);border:1px solid var(--vf-border);border-radius:14px;padding:16px 18px;font-size:15px;line-height:1.6;color:var(--vf-text)}
+.vf-problem-icon{font-size:20px;flex-shrink:0}
+
+/* ── AVANTAGES GRID ── */
+.vf-benefits-grid{display:grid;grid-template-columns:1fr;gap:14px;max-width:560px;margin:0 auto}
+@media(min-width:560px){.vf-benefits-grid{grid-template-columns:1fr 1fr}}
+.vf-benefit-card{background:var(--vf-card);border:1px solid var(--vf-border);border-radius:16px;padding:22px 20px;transition:border-color .2s}
+.vf-benefit-icon{font-size:28px;margin-bottom:12px}
+.vf-benefit-title{font-size:16px;font-weight:700;color:var(--vf-dark);margin-bottom:6px;line-height:1.3}
+.vf-benefit-desc{font-size:14px;color:var(--vf-light);line-height:1.6}
+
+/* ── COMMENT CA MARCHE ── */
+.vf-steps{display:flex;flex-direction:column;gap:0;max-width:480px;margin:0 auto;position:relative}
+.vf-step{display:flex;gap:18px;padding-bottom:32px;position:relative}
+.vf-step:last-child{padding-bottom:0}
+.vf-step::before{content:'';position:absolute;left:21px;top:46px;bottom:0;width:2px;background:var(--vf-border)}
+.vf-step:last-child::before{display:none}
+.vf-step-num{width:44px;height:44px;border-radius:50%;background:var(--vf-accent);color:#fff;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1}
+.vf-step-content{padding-top:6px}
+.vf-step-title{font-size:17px;font-weight:700;color:var(--vf-dark);margin-bottom:4px}
+.vf-step-desc{font-size:14px;color:var(--vf-light);line-height:1.6}
+
+/* ── GALERIE USAGES ── */
+.vf-usage-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:560px;margin:0 auto}
+.vf-usage-card{background:var(--vf-card);border:1px solid var(--vf-border);border-radius:14px;padding:18px 16px;text-align:center}
+.vf-usage-icon{font-size:30px;margin-bottom:10px}
+.vf-usage-title{font-size:14px;font-weight:700;color:var(--vf-dark);margin-bottom:4px}
+.vf-usage-desc{font-size:12.5px;color:var(--vf-light);line-height:1.5}
+
+/* ── POURQUOI NOUS ── */
+.vf-trust-grid{display:flex;flex-direction:column;gap:12px;max-width:480px;margin:0 auto}
+.vf-trust-item{display:flex;align-items:flex-start;gap:14px;background:var(--vf-card);border:1px solid var(--vf-border);border-radius:14px;padding:18px}
+.vf-trust-icon{font-size:22px;flex-shrink:0}
+.vf-trust-title{font-size:15px;font-weight:700;color:var(--vf-dark);margin-bottom:3px}
+.vf-trust-desc{font-size:13.5px;color:var(--vf-light);line-height:1.6}
+
+/* ── FAQ (accordéon natif, pas de JS requis) ── */
+.vf-faq-list{display:flex;flex-direction:column;gap:10px;max-width:560px;margin:0 auto}
+.vf-faq-item{background:var(--vf-card);border:1px solid var(--vf-border);border-radius:14px;overflow:hidden}
+.vf-faq-item summary{padding:18px 20px;font-size:15px;font-weight:600;color:var(--vf-dark);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;-webkit-tap-highlight-color:transparent}
+.vf-faq-item summary::-webkit-details-marker{display:none}
+.vf-faq-item summary::after{content:'+';font-size:22px;color:var(--vf-accent);font-weight:300;flex-shrink:0;transition:transform .2s}
+.vf-faq-item[open] summary::after{transform:rotate(45deg)}
+.vf-faq-answer{padding:0 20px 18px;font-size:14px;color:var(--vf-light);line-height:1.7}
+
+/* ── PAIEMENT LIVRAISON ── */
+.vf-cod{background:var(--vf-accent-soft);border:1px solid rgba(47,158,110,.2);border-radius:20px;padding:32px 24px;max-width:520px;margin:0 auto;text-align:center}
+.vf-cod-icon{font-size:40px;margin-bottom:16px}
+.vf-cod-title{font-size:20px;font-weight:800;color:var(--vf-dark);margin-bottom:12px}
+.vf-cod-text{font-size:14.5px;color:var(--vf-text);line-height:1.7}
+
+/* ── CTA FINAL ── */
+.vf-final{background:var(--vf-dark);text-align:center;padding:56px 20px}
+.vf-final .vf-h2{color:#fff}
+.vf-final-sub{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:28px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.6}
+.vf-final-note{font-size:13px;color:rgba(255,255,255,.4);margin-top:14px}
+
+/* ── STICKY MOBILE CTA ── */
+.vf-sticky{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--vf-border);padding:10px 16px;display:none;align-items:center;gap:12px;z-index:999;box-shadow:0 -4px 16px rgba(0,0,0,.06)}
+@media(max-width:680px){.vf-sticky.vf-sticky-show{display:flex}}
+.vf-sticky-text{flex:1;font-size:13px;font-weight:600;color:var(--vf-dark)}
+.vf-sticky-btn{background:var(--vf-accent);color:#fff;border:none;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap}
+</style>
+
+<!-- ░░ HERO ░░ -->
+<div class="vf-hero">
+  <div class="vf-container">
+    <div class="vf-hero-badge">🇩🇿 Livraison dans toute l'Algérie</div>
+    <h1 class="vf-h1">Profitez de votre maison<br>sans une seule mouche.</h1>
+    <p class="vf-hero-sub">Un ventilateur silencieux qui éloigne les mouches naturellement, sans produit chimique, sans odeur, sans effort.</p>
+    <a href="https://9y1jme-wi.myshopify.com/cart/53211225358672:1?channel=buy_now" target="_blank" class="vf-cta-btn">
+      Je commande maintenant
+    </a>
+    <p class="vf-cta-note">💵 Paiement à la livraison · Aucun paiement en ligne requis</p>
+    <div class="vf-hero-img" style="background-image:url('https://sc04.alicdn.com/kf/Hcc59f414fc434d9583e10fbfba37b56aL.jpg');background-size:cover;background-position:center;">
+    </div>
+  </div>
+</div>
+
+<!-- ░░ STRIP BADGES ░░ -->
+<div class="vf-strip">
+  <div class="vf-strip-inner">
+    <span class="vf-strip-item">🚚 Livraison 58 wilayas</span>
+    <span class="vf-strip-item">💵 Paiement à la réception</span>
+    <span class="vf-strip-item">✅ Produit vérifié</span>
+    <span class="vf-strip-item">📞 Confirmation par appel</span>
+  </div>
+</div>
+
+<!-- ░░ PROBLÈME ░░ -->
+<div class="vf-section">
+  <div class="vf-container">
+    <div class="vf-eyebrow">Le problème</div>
+    <h2 class="vf-h2">Les mouches gâchent<br>les meilleurs moments</h2>
+    <p class="vf-section-sub">Un repas en famille. Un thé entre amis. Une sieste tranquille. Et puis une mouche arrive — puis dix.</p>
+    <div class="vf-problem-list">
+      <div class="vf-problem-item"><span class="vf-problem-icon">😤</span>Vous agitez la main sans arrêt pendant les repas</div>
+      <div class="vf-problem-item"><span class="vf-problem-icon">🪟</span>Vous fermez les fenêtres malgré la chaleur</div>
+      <div class="vf-problem-item"><span class="vf-problem-icon">🧴</span>Vous ressortez le spray chimique — encore</div>
+      <div class="vf-problem-item"><span class="vf-problem-icon">😩</span>Le problème revient chaque jour, dans chaque pièce</div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ SOLUTION ░░ -->
+<div class="vf-section vf-section-alt">
+  <div class="vf-container">
+    <div class="vf-eyebrow">La solution</div>
+    <h2 class="vf-h2">Pourquoi un ventilateur<br>change tout</h2>
+    <p class="vf-section-sub">Les mouches détestent le mouvement constant de l'air — un principe utilisé depuis longtemps dans les cuisines professionnelles.</p>
+    <p class="vf-section-sub" style="margin-bottom:0">BREEZLY FlyGuard crée un flux d'air léger et continu qui rend l'atterrissage des mouches impossible. Sans les tuer. Sans produit toxique. Sans odeur dans la maison.</p>
+  </div>
+</div>
+
+<!-- ░░ AVANTAGES ░░ -->
+<div class="vf-section">
+  <div class="vf-container">
+    <div class="vf-eyebrow">Les avantages</div>
+    <h2 class="vf-h2">Ce que ça change<br>vraiment pour vous</h2>
+  </div>
+  <div class="vf-benefits-grid">
+    <div class="vf-benefit-card">
+      <div class="vf-benefit-icon">🌬️</div>
+      <div class="vf-benefit-title">Une maison enfin tranquille</div>
+      <div class="vf-benefit-desc">Mangez, recevez, reposez-vous sans interruption.</div>
+    </div>
+    <div class="vf-benefit-card">
+      <div class="vf-benefit-icon">👶</div>
+      <div class="vf-benefit-title">Sûr près des enfants</div>
+      <div class="vf-benefit-desc">Aucun produit chimique en suspension dans l'air.</div>
+    </div>
+    <div class="vf-benefit-card">
+      <div class="vf-benefit-icon">🔌</div>
+      <div class="vf-benefit-title">Simple comme une lampe</div>
+      <div class="vf-benefit-desc">Branchez, allumez, c'est tout.</div>
+    </div>
+    <div class="vf-benefit-card">
+      <div class="vf-benefit-icon">🤫</div>
+      <div class="vf-benefit-title">Silencieux, même la nuit</div>
+      <div class="vf-benefit-desc">Ne dérange ni votre sommeil ni vos invités.</div>
+    </div>
+    <div class="vf-benefit-card">
+      <div class="vf-benefit-icon">🔋</div>
+      <div class="vf-benefit-title">Économique à l'usage</div>
+      <div class="vf-benefit-desc">Bien moins cher que des sprays chaque semaine.</div>
+    </div>
+    <div class="vf-benefit-card">
+      <div class="vf-benefit-icon">🧳</div>
+      <div class="vf-benefit-title">Léger et déplaçable</div>
+      <div class="vf-benefit-desc">De la cuisine à la terrasse, il vous suit partout.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ COMMENT ÇA MARCHE ░░ -->
+<div class="vf-section vf-section-alt">
+  <div class="vf-container">
+    <div class="vf-eyebrow">Comment ça marche</div>
+    <h2 class="vf-h2">Trois étapes,<br>aucune complication</h2>
+    <div class="vf-steps">
+      <div class="vf-step">
+        <div class="vf-step-num">1</div>
+        <div class="vf-step-content">
+          <div class="vf-step-title">Branchez</div>
+          <div class="vf-step-desc">Posez le ventilateur où vous voulez : table, comptoir, terrasse.</div>
+        </div>
+      </div>
+      <div class="vf-step">
+        <div class="vf-step-num">2</div>
+        <div class="vf-step-content">
+          <div class="vf-step-title">Allumez</div>
+          <div class="vf-step-desc">Un seul bouton. Le flux d'air démarre immédiatement.</div>
+        </div>
+      </div>
+      <div class="vf-step">
+        <div class="vf-step-num">3</div>
+        <div class="vf-step-content">
+          <div class="vf-step-title">Profitez</div>
+          <div class="vf-step-desc">Les mouches s'éloignent naturellement. Vous, vous restez tranquille.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ GALERIE USAGES ░░ -->
+<div class="vf-section">
+  <div class="vf-container">
+    <div class="vf-eyebrow">Dans votre quotidien</div>
+    <h2 class="vf-h2">Partout où vous<br>en avez besoin</h2>
+  </div>
+  <div class="vf-usage-grid">
+    <div class="vf-usage-card">
+      <div class="vf-usage-icon">🍽️</div>
+      <div class="vf-usage-title">Table à manger</div>
+      <div class="vf-usage-desc">Protégez vos repas en famille</div>
+    </div>
+    <div class="vf-usage-card">
+      <div class="vf-usage-icon">☕</div>
+      <div class="vf-usage-title">Terrasse</div>
+      <div class="vf-usage-desc">Profitez du thé entre amis</div>
+    </div>
+    <div class="vf-usage-card">
+      <div class="vf-usage-icon">🛏️</div>
+      <div class="vf-usage-title">Chambre</div>
+      <div class="vf-usage-desc">Dormez fenêtres ouvertes</div>
+    </div>
+    <div class="vf-usage-card">
+      <div class="vf-usage-icon">🏪</div>
+      <div class="vf-usage-title">Commerce</div>
+      <div class="vf-usage-desc">Épiceries, boulangeries</div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ POURQUOI NOUS ░░ -->
+<div class="vf-section vf-section-alt">
+  <div class="vf-container">
+    <div class="vf-eyebrow">Pourquoi nous</div>
+    <h2 class="vf-h2">Acheter en toute<br>confiance</h2>
+    <div class="vf-trust-grid">
+      <div class="vf-trust-item">
+        <span class="vf-trust-icon">🚚</span>
+        <div>
+          <div class="vf-trust-title">Livraison partout en Algérie</div>
+          <div class="vf-trust-desc">Nous livrons dans toutes les wilayas, jusqu'à votre porte.</div>
+        </div>
+      </div>
+      <div class="vf-trust-item">
+        <span class="vf-trust-icon">💵</span>
+        <div>
+          <div class="vf-trust-title">Vous payez à la réception</div>
+          <div class="vf-trust-desc">Aucun paiement en ligne. Réglez en espèces après vérification.</div>
+        </div>
+      </div>
+      <div class="vf-trust-item">
+        <span class="vf-trust-icon">✅</span>
+        <div>
+          <div class="vf-trust-title">Produit vérifié avant envoi</div>
+          <div class="vf-trust-desc">Chaque ventilateur est contrôlé avant l'expédition.</div>
+        </div>
+      </div>
+      <div class="vf-trust-item">
+        <span class="vf-trust-icon">📞</span>
+        <div>
+          <div class="vf-trust-title">Service client réel</div>
+          <div class="vf-trust-desc">Une question ? Nous répondons directement, sans robot.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ FAQ ░░ -->
+<div class="vf-section">
+  <div class="vf-container">
+    <div class="vf-eyebrow">Questions fréquentes</div>
+    <h2 class="vf-h2">Tout ce que vous<br>voulez savoir</h2>
+    <div class="vf-faq-list">
+      <details class="vf-faq-item">
+        <summary>Le ventilateur tue-t-il les mouches ?</summary>
+        <div class="vf-faq-answer">Non. Il ne tue pas et ne capture pas les mouches. Il crée un flux d'air qui les empêche de se poser, ce qui les pousse naturellement à s'éloigner de la zone protégée.</div>
+      </details>
+      <details class="vf-faq-item">
+        <summary>Est-ce efficace contre tous les insectes ?</summary>
+        <div class="vf-faq-answer">Le produit est conçu spécifiquement pour les mouches. Son efficacité contre d'autres insectes peut varier.</div>
+      </details>
+      <details class="vf-faq-item">
+        <summary>Combien de temps puis-je le laisser allumé ?</summary>
+        <div class="vf-faq-answer">Il est conçu pour un usage prolongé, y compris toute la journée ou toute la nuit.</div>
+      </details>
+      <details class="vf-faq-item">
+        <summary>Est-ce bruyant ?</summary>
+        <div class="vf-faq-answer">Non. Le niveau sonore est volontairement bas, comparable à un ventilateur de bureau classique.</div>
+      </details>
+      <details class="vf-faq-item">
+        <summary>Combien coûte la livraison ?</summary>
+        <div class="vf-faq-answer">Les frais de livraison sont indiqués clairement avant la validation de votre commande, sans surprise.</div>
+      </details>
+      <details class="vf-faq-item">
+        <summary>Puis-je refuser le colis si je change d'avis ?</summary>
+        <div class="vf-faq-answer">Oui. Comme le paiement se fait à la livraison, vous n'êtes engagé(e) à rien tant que vous n'avez pas reçu et accepté le produit.</div>
+      </details>
+      <details class="vf-faq-item">
+        <summary>Combien de temps pour recevoir ma commande ?</summary>
+        <div class="vf-faq-answer">Les délais varient selon votre wilaya. Vous recevez un appel de confirmation avant l'expédition pour organiser la livraison.</div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ PAIEMENT LIVRAISON ░░ -->
+<div class="vf-section vf-section-alt">
+  <div class="vf-container">
+    <div class="vf-cod">
+      <div class="vf-cod-icon">💵</div>
+      <div class="vf-cod-title">Vous ne payez rien maintenant</div>
+      <p class="vf-cod-text">Commandez en toute confiance. Aucune carte bancaire, aucun paiement en ligne.<br><br>Un agent vous appelle pour confirmer votre commande. Le livreur vous remet le colis. Vous vérifiez. Vous payez en espèces, uniquement si vous êtes satisfait(e).<br><br><strong>C'est aussi simple que ça.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ CTA FINAL ░░ -->
+<div class="vf-final" id="vf-order">
+  <div class="vf-container">
+    <h2 class="vf-h2">Cet été, gardez votre<br>maison pour vous.</h2>
+    <p class="vf-final-sub">Un geste simple. Un confort retrouvé dans chaque pièce de la maison.</p>
+    <a href="https://9y1jme-wi.myshopify.com/cart/53211225358672:1?channel=buy_now" target="_blank" class="vf-cta-btn" style="max-width:380px">Je commande maintenant</a>
+    <p class="vf-final-note">🇩🇿 Livraison disponible dans toutes les wilayas d'Algérie</p>
+  </div>
+</div>
+
+<!-- ░░ STICKY MOBILE CTA ░░ -->
+<div class="vf-sticky" id="vf-sticky-cta">
+  <span class="vf-sticky-text">Paiement à la livraison</span>
+  <a href="https://9y1jme-wi.myshopify.com/cart/53211225358672:1?channel=buy_now" target="_blank" class="vf-sticky-btn">Commander</a>
+</div>
+
+<script>
+  // Scoped, ne touche à rien en dehors de la section
+  (function(){
+    var sticky = document.getElementById('vf-sticky-cta');
+    var hero = document.querySelector('.vf-hero');
+    if(!sticky || !hero) return;
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting){ sticky.classList.add('vf-sticky-show'); }
+        else { sticky.classList.remove('vf-sticky-show'); }
+      });
+    }, { threshold: 0 });
+    observer.observe(hero);
+  })();
+</script>
+
+</section>
